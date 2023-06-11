@@ -1,0 +1,93 @@
+<!DOCTYPE html> <!--document type as HTML5-->
+<html lang="en"> <!--set language english-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop project</title> <!--title of the web page-->
+    <link rel="stylesheet" href="style.css"> <!--link css file to the html document-->
+</head>
+
+<body>
+
+    <div class="container"> <!--create div element as container-->
+        <button id="btn">Reset</button> <!--create button that serves as reset button for drag and drop-->
+        <div id="left"> <!--div having id left that represent left side of the drag and drop area-->
+            <!--div having class list that has image and text and both are draggable-->
+            <div class="list" draggable="true"><img src="java.png">Java course</div>
+            <div class="list" draggable="true"><img src="web.png">web course</div>
+            <div class="list" draggable="true"><img src="data.png">Data science</div>
+            <div class="list" draggable="true">Enroll All course</div>
+        </div>
+        <div id="right"></div> <!--create div element that represent right side of the drag and drop area-->
+        <div id="message"></div><!--create div element that display message-->
+    </div>
+
+</body>
+
+<script> //embed javascript code.
+    let lists = document.getElementsByClassName("list"); //declare a variable lists and assign it the elements with class list 
+    let rightBox = document.getElementById("right"); //declare a variable rightBox and assign it the elements with class right 
+    let leftBox = document.getElementById("left");  //declare a variable leftBOx and assign it the elements with class left 
+    let resetButton = document.getElementById("btn"); //declare a variable resetButton and assign it the elements with class btn
+    let message = document.getElementById("message"); //declare a variable message and assign it the elements with class message 
+
+
+    // Store the original order of items
+    let originalOrder = Array.from(leftBox.children);
+    resetButton.addEventListener("click", function (e) {
+        let rightItems = rightBox.children;
+        // Restore the original order
+        for (let i = 0; i < originalOrder.length; i++) {
+            leftBox.appendChild(originalOrder[i]);
+        }
+       //execute as long as there is element in rightItems
+       while (rightItems.length > 0) 
+       {
+         leftBox.appendChild(rightItems[0]); //append first child from rightItems to the leftBox
+      }
+        showMessage("");
+    });
+
+    function initializeDragAndDrop() {
+        for (list of lists) //loop that iterates over each item in the lists array
+        {
+            list.addEventListener("dragstart", function (e) //adds an event listener to each item in the list,dragstart event is triggered when item is dragged
+            {
+                let selected = e.target;//declare variable and assign target of the event
+
+                rightBox.addEventListener("dragover", function (e) //adds an event listener to the rightBox,listen dragover event
+                {
+                    e.preventDefault();//prevent the default behaviour
+                });
+
+                rightBox.addEventListener("drop", function (e) //adds an event listener to the rightBox,listen drop event
+                {
+                    rightBox.appendChild(selected);//append selected item for rightbox
+                    selected = null; //set select equals null
+                    showMessage("Successfully dropped"); //display message
+                });
+
+                leftBox.addEventListener("dragover", function (e) //adds an event listener to the leftBox,listen dragover event
+                {
+                    e.preventDefault(); //prevent the default behaviour
+                });
+
+                leftBox.addEventListener("drop", function (e) //adds an event listener to the leftBox,listen drop event
+                {
+                    leftBox.appendChild(selected);//append selected item for leftbox
+                    selected = null; //set select equals null
+                });
+            });
+        }
+    }
+    //
+    function showMessage(msg) //function show message take msg as a parameter
+    {
+        message.textContent = msg; //set the text content of the message
+    }
+
+    initializeDragAndDrop(); // initialize DragAndDrop function
+</script>
+
+</html>

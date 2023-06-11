@@ -1,0 +1,126 @@
+/*set global style for all elemrnt*/
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'poppins', 'sans-serif';
+    box-sizing: border-box;
+}
+
+/*style the container class it is the main container of webpage*/
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(186, 170, 233);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*style left and right div element*/
+#left,
+#right {
+    width: 300px;
+    min-height: 400px;
+    margin: 20px;
+    border: 5px solid #fff;
+    background-color: rgb(64, 39, 171);
+}
+
+/*style list class which represent draggable item*/
+.list {
+    background-color: #eac2ee;
+    height: 60px;
+    margin: 30px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    cursor: grab;
+    border-radius: 5px;
+}
+/*style images within the list class*/
+.list img {
+    width: 50px;
+    margin-right: 15px;
+    margin-left: 20px;
+}
+
+
+/*style list class which represent draggable item*/
+.list {
+    background-color: #eac2ee;
+    height: 60px;
+    margin: 30px;
+    color: #1f0e0e;
+    display: flex;
+    align-items: center;
+    cursor: grab;
+    border-radius: 5px;
+    padding: 30px;
+    font-size: large;
+    font-weight: 600;
+}
+
+/*style btn id which represent reset button*/
+#btn {
+    padding: 3px;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    font-size: larger;
+    font-weight: 700;
+    background-color: rgb(236, 253, 253);
+    color: black;
+    border-radius: 5px;
+}
+/*styles the btn id when it's being hovered over*/
+#btn:hover {
+    font-size: x-large;
+    background-color: #eac2ee;
+}
+/*styles the message id, which represents the message div*/
+#message {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+/*sets media queries for screen widths up to 800 pixels.
+It applies specific styles when the screen width is below or equal to 800 pixels. 
+The container is modified and the font size and image width in the list class are also modified,
+as well as the reset button */
+@media screen and (max-width: 800px) {
+    .container {
+        width: 100%;
+        min-height: 100vh;
+        background-color: rgb(146, 131, 192);
+        display: block;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #left,
+    #right {
+        width: 50%;
+        margin: 10px;
+        position: relative;
+        left: 58px;
+    }
+
+    .list {
+        margin: 5px;
+        font-size: 14px;
+    }
+
+    .list img {
+        width: 40px;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    #btn {
+        display: flex;
+        width: 54px;
+        height: 30px;
+        margin-top: 10px;
+        background-color: blueviolet;
+    }
+}
